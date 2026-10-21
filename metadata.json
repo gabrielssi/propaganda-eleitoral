@@ -1,0 +1,6 @@
+{
+  "name": "Lula 2026 - Programa de Governo e Defesa da Democracia",
+  "description": "Plataforma oficial com as diretrizes do Programa de Governo Lula 2026, download do documento em PDF, indicadores socioeconômicos e defesa da democracia brasileira.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
