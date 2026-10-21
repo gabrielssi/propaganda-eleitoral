@@ -1,4 +1,5 @@
 import { X, Download, FileText, ExternalLink } from 'lucide-react';
+import { getAssetUrl } from '../utils/assets';
 
 interface PdfViewerModalProps {
   isOpen: boolean;
@@ -8,7 +9,7 @@ interface PdfViewerModalProps {
 export function PdfViewerModal({ isOpen, onClose }: PdfViewerModalProps) {
   if (!isOpen) return null;
 
-  const pdfUrl = "/assets/aistudio/Programa-Governo-LULA-2026_75e2dab7.pdf";
+  const pdfUrl = getAssetUrl('assets/aistudio/Programa-Governo-LULA-2026_75e2dab7.pdf');
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-neutral-950/80 backdrop-blur-sm animate-in fade-in duration-150">

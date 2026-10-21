@@ -27,13 +27,13 @@ export function Footer({ onOpenPdfModal }: FooterProps) {
             </p>
 
             <div className="pt-2">
-              <button
-                onClick={onOpenPdfModal}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-red-600/90 hover:bg-red-600 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer"
+              <a
+                href="#programa-oficial"
+                className="inline-flex items-center gap-1.5 text-xs text-neutral-400 hover:text-white transition-colors"
               >
-                <FileDown className="w-3.5 h-3.5" />
-                <span>Baixar Documento Oficial em PDF</span>
-              </button>
+                <FileDown className="w-3.5 h-3.5 text-neutral-500" />
+                <span>Consultar documento oficial completo (PDF)</span>
+              </a>
             </div>
           </div>
 

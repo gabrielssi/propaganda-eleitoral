@@ -64,13 +64,13 @@ export function Navbar({ onOpenPdfModal }: NavbarProps) {
 
           {/* Zone 3: 1 Primary Action */}
           <div className="hidden sm:flex items-center gap-3 shrink-0">
-            <button
-              onClick={onOpenPdfModal}
-              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-bold text-white bg-red-600 hover:bg-red-700 active:scale-[0.98] transition-all rounded-lg shadow-sm whitespace-nowrap cursor-pointer"
+            <a
+              href="#programa-oficial"
+              className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-neutral-800 hover:text-neutral-900 bg-neutral-100 hover:bg-neutral-200 border border-neutral-200 rounded-lg transition-colors whitespace-nowrap cursor-pointer"
             >
-              <FileDown className="w-4 h-4" />
-              <span>Baixar Programa (PDF)</span>
-            </button>
+              <FileDown className="w-3.5 h-3.5 text-neutral-600" />
+              <span>Programa em PDF</span>
+            </a>
           </div>
 
           {/* Mobile hamburger */}
@@ -127,16 +127,14 @@ export function Navbar({ onOpenPdfModal }: NavbarProps) {
             </a>
           </nav>
           <div className="pt-3 border-t border-neutral-100 flex flex-col gap-2">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenPdfModal();
-              }}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 text-sm font-bold text-white bg-red-600 rounded-lg shadow-sm"
+            <a
+              href="#programa-oficial"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-bold text-neutral-800 bg-neutral-100 hover:bg-neutral-200 rounded-lg border border-neutral-200"
             >
-              <FileDown className="w-4 h-4" />
-              <span>Ver e Baixar Programa Oficial (PDF)</span>
-            </button>
+              <FileDown className="w-4 h-4 text-neutral-600" />
+              <span>Ver Programa de Governo Oficial (PDF)</span>
+            </a>
           </div>
         </div>
       )}

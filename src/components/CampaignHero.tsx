@@ -1,5 +1,6 @@
 import { ArrowRight, FileDown, ShieldAlert, Sparkles, CheckCircle2 } from 'lucide-react';
 import { COALITION_PARTIES } from '../data/programData';
+import { getAssetUrl } from '../utils/assets';
 
 interface CampaignHeroProps {
   onOpenPdfModal: () => void;
@@ -57,23 +58,15 @@ export function CampaignHero({ onOpenPdfModal }: CampaignHeroProps) {
             <div className="flex flex-wrap items-center gap-4 mb-10">
               <a
                 href="#propostas"
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-neutral-900 hover:bg-neutral-800 text-white text-base font-bold rounded-lg shadow-sm hover:shadow transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3.5 bg-red-600 hover:bg-red-700 text-white text-base font-bold rounded-lg shadow-sm hover:shadow transition-all"
               >
                 <span>Conhecer as 13 Diretrizes</span>
-                <ArrowRight className="w-5 h-5 text-amber-400" />
+                <ArrowRight className="w-5 h-5" />
               </a>
-
-              <button
-                onClick={onOpenPdfModal}
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-red-600 hover:bg-red-700 text-white text-base font-bold rounded-lg shadow-sm hover:shadow transition-all cursor-pointer"
-              >
-                <FileDown className="w-5 h-5" />
-                <span>Baixar Programa Oficial (PDF)</span>
-              </button>
 
               <a
                 href="#democracia"
-                className="inline-flex items-center gap-2 px-5 py-3 text-neutral-700 hover:text-red-700 text-sm font-semibold border border-neutral-300 hover:border-red-300 rounded-lg transition-all"
+                className="inline-flex items-center gap-2 px-5 py-3.5 text-neutral-800 hover:text-red-700 text-sm font-bold bg-neutral-100 hover:bg-neutral-200 rounded-lg transition-all"
               >
                 <ShieldAlert className="w-4 h-4 text-red-600" />
                 <span>Defesa da Democracia</span>
@@ -107,7 +100,7 @@ export function CampaignHero({ onOpenPdfModal }: CampaignHeroProps) {
               {/* Outer decorative border with Brazilian colors */}
               <div className="relative rounded-2xl overflow-hidden border-4 border-white shadow-2xl bg-neutral-100">
                 <img
-                  src="/assets/extracted/capa_lula.jpg"
+                  src={getAssetUrl('assets/extracted/capa_lula.jpg')}
                   alt="Presidente Lula - Campanha Oficial 2026 com o povo brasileiro"
                   className="w-full h-auto object-cover max-h-[580px]"
                   loading="eager"
@@ -116,17 +109,9 @@ export function CampaignHero({ onOpenPdfModal }: CampaignHeroProps) {
 
                 {/* Overlay Badge */}
                 <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-neutral-950/90 via-neutral-950/60 to-transparent text-white">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xs uppercase tracking-widest text-amber-400 font-bold">Documento Oficial Registrado</p>
-                      <p className="text-base font-bold">Programa de Governo Lula 2026</p>
-                    </div>
-                    <button
-                      onClick={onOpenPdfModal}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-xs font-semibold rounded text-white transition-all cursor-pointer"
-                    >
-                      <span>Abrir PDF</span>
-                    </button>
+                  <div>
+                    <p className="text-[11px] uppercase tracking-widest text-amber-400 font-bold">Documento Registrado no TSE</p>
+                    <p className="text-sm font-bold text-neutral-100">Programa de Governo Lula 2026</p>
                   </div>
                 </div>
               </div>
