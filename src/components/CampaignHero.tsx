@@ -3,12 +3,13 @@ import { COALITION_PARTIES } from '../data/programData';
 import { getAssetUrl } from '../utils/assets';
 
 interface CampaignHeroProps {
+  onSelectTab: (tabId: string) => void;
   onOpenPdfModal: () => void;
 }
 
-export function CampaignHero({ onOpenPdfModal }: CampaignHeroProps) {
+export function CampaignHero({ onSelectTab, onOpenPdfModal }: CampaignHeroProps) {
   return (
-    <section className="relative overflow-hidden bg-white border-b border-neutral-200 pt-8 pb-16 lg:py-20">
+    <section className="relative overflow-hidden bg-white border-b border-neutral-200 pt-8 pb-14 lg:py-16">
       {/* Decorative subtle Brazil geometry in background */}
       <div className="absolute top-0 right-0 -z-10 w-1/2 h-full opacity-[0.03] pointer-events-none select-none">
         <svg viewBox="0 0 100 100" className="w-full h-full" fill="none">
@@ -18,7 +19,7 @@ export function CampaignHero({ onOpenPdfModal }: CampaignHeroProps) {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           
           {/* Left Column: Headline and Arguments */}
           <div className="lg:col-span-7 flex flex-col justify-center">
@@ -45,32 +46,32 @@ export function CampaignHero({ onOpenPdfModal }: CampaignHeroProps) {
             </div>
 
             {/* Display Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-neutral-900 tracking-tight leading-[1.08] text-balance mb-6">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-neutral-900 tracking-tight leading-[1.08] text-balance mb-6">
               O que nos move são os <span className="text-red-600 underline decoration-amber-400 decoration-wavy decoration-2">sonhos do povo brasileiro.</span>
             </h1>
 
             {/* Subtitle from the official text */}
-            <p className="text-lg sm:text-xl text-neutral-700 leading-relaxed max-w-2xl mb-8">
+            <p className="text-base sm:text-lg lg:text-xl text-neutral-700 leading-relaxed max-w-2xl mb-8">
               Diretrizes para o Programa de Transformação do Brasil: um país soberano, democrático, desenvolvido, sustentável e que coloca a classe trabalhadora no centro do orçamento da nação.
             </p>
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-10">
-              <a
-                href="#propostas"
-                className="inline-flex items-center justify-center gap-2 px-6 py-4 sm:py-3.5 bg-red-600 hover:bg-red-700 active:scale-[0.98] text-white text-base font-bold rounded-xl sm:rounded-lg shadow-sm hover:shadow transition-all min-h-[48px]"
+              <button
+                onClick={() => onSelectTab('propostas')}
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 sm:py-3.5 bg-red-600 hover:bg-red-700 active:scale-[0.98] text-white text-base font-bold rounded-xl sm:rounded-lg shadow-sm hover:shadow transition-all min-h-[48px] cursor-pointer"
               >
                 <span>Conhecer as 13 Diretrizes</span>
                 <ArrowRight className="w-5 h-5" />
-              </a>
+              </button>
 
-              <a
-                href="#democracia"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-neutral-800 hover:text-red-700 text-sm font-bold bg-neutral-100 hover:bg-neutral-200 active:scale-[0.98] rounded-xl sm:rounded-lg transition-all min-h-[48px]"
+              <button
+                onClick={() => onSelectTab('democracia')}
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-neutral-800 hover:text-red-700 text-sm font-bold bg-neutral-100 hover:bg-neutral-200 active:scale-[0.98] rounded-xl sm:rounded-lg transition-all min-h-[48px] cursor-pointer"
               >
                 <ShieldAlert className="w-4 h-4 text-red-600" />
                 <span>Defesa da Democracia</span>
-              </a>
+              </button>
             </div>
 
             {/* Coalition Parties Bar */}
@@ -136,22 +137,26 @@ export function CampaignHero({ onOpenPdfModal }: CampaignHeroProps) {
 
         </div>
 
-        {/* 4-Column Quick Achievement Strip (Mobile & Tablet Optimized) */}
-        <div className="mt-12 sm:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 p-4 sm:p-6 bg-neutral-100/90 rounded-2xl border border-neutral-200">
+        {/* 4-Column Quick Achievement Strip (Interactive to Indicadores Tab) */}
+        <div 
+          onClick={() => onSelectTab('indicadores')}
+          className="mt-10 sm:mt-12 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 p-4 sm:p-5 bg-neutral-100/90 hover:bg-neutral-100 rounded-2xl border border-neutral-200 cursor-pointer transition-all hover:border-red-300 group"
+          title="Clique para ver gráficos e indicadores completos"
+        >
           <div className="p-2 sm:px-3 sm:py-2">
-            <span className="block text-xl sm:text-2xl lg:text-3xl font-black text-neutral-900 tracking-tight tabular-nums">8 Milhões</span>
+            <span className="block text-xl sm:text-2xl lg:text-3xl font-black text-neutral-900 group-hover:text-red-700 transition-colors tracking-tight tabular-nums">8 Milhões</span>
             <span className="text-[11px] sm:text-xs font-medium text-neutral-600">Novos empregos formais</span>
           </div>
           <div className="p-2 sm:px-3 sm:py-2 border-l border-neutral-300">
-            <span className="block text-xl sm:text-2xl lg:text-3xl font-black text-neutral-900 tracking-tight tabular-nums">R$ 5.000</span>
+            <span className="block text-xl sm:text-2xl lg:text-3xl font-black text-neutral-900 group-hover:text-red-700 transition-colors tracking-tight tabular-nums">R$ 5.000</span>
             <span className="text-[11px] sm:text-xs font-medium text-neutral-600">Isenção total de IR</span>
           </div>
           <div className="p-2 sm:px-3 sm:py-2 border-t sm:border-t-0 sm:border-l border-neutral-300">
-            <span className="block text-xl sm:text-2xl lg:text-3xl font-black text-neutral-900 tracking-tight tabular-nums">7,3 Milhões</span>
+            <span className="block text-xl sm:text-2xl lg:text-3xl font-black text-neutral-900 group-hover:text-red-700 transition-colors tracking-tight tabular-nums">7,3 Milhões</span>
             <span className="text-[11px] sm:text-xs font-medium text-neutral-600">Jovens no Pé-de-Meia</span>
           </div>
           <div className="p-2 sm:px-3 sm:py-2 border-t sm:border-t-0 border-l border-neutral-300">
-            <span className="block text-xl sm:text-2xl lg:text-3xl font-black text-neutral-900 tracking-tight tabular-nums">3 Milhões</span>
+            <span className="block text-xl sm:text-2xl lg:text-3xl font-black text-neutral-900 group-hover:text-red-700 transition-colors tracking-tight tabular-nums">3 Milhões</span>
             <span className="text-[11px] sm:text-xs font-medium text-neutral-600">Moradias no MCMV</span>
           </div>
         </div>

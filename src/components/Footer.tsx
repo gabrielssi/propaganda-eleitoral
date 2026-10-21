@@ -2,10 +2,11 @@ import { FileDown, ExternalLink } from 'lucide-react';
 import { COALITION_PARTIES } from '../data/programData';
 
 interface FooterProps {
+  onSelectTab?: (tabId: string) => void;
   onOpenPdfModal: () => void;
 }
 
-export function Footer({ onOpenPdfModal }: FooterProps) {
+export function Footer({ onSelectTab, onOpenPdfModal }: FooterProps) {
   return (
     <footer className="bg-neutral-950 text-neutral-400 text-sm border-t border-neutral-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -44,29 +45,52 @@ export function Footer({ onOpenPdfModal }: FooterProps) {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <a href="#propostas" className="hover:text-white transition-colors">
+                <button 
+                  onClick={() => onSelectTab?.('propostas')} 
+                  className="hover:text-white transition-colors cursor-pointer text-left"
+                >
                   13 Diretrizes Programáticas
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#indicadores" className="hover:text-white transition-colors">
+                <button 
+                  onClick={() => onSelectTab?.('indicadores')} 
+                  className="hover:text-white transition-colors cursor-pointer text-left"
+                >
                   Indicadores Socioeconômicos
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#por-que-lula" className="hover:text-white transition-colors">
+                <button 
+                  onClick={() => onSelectTab?.('por-que-lula')} 
+                  className="hover:text-white transition-colors cursor-pointer text-left"
+                >
                   Por Que Votar em Lula
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#democracia" className="hover:text-white transition-colors">
+                <button 
+                  onClick={() => onSelectTab?.('democracia')} 
+                  className="hover:text-white transition-colors cursor-pointer text-left"
+                >
                   Defesa da Democracia e Fatos
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#voto-abstencao" className="hover:text-white transition-colors">
+                <button 
+                  onClick={() => onSelectTab?.('voto')} 
+                  className="hover:text-white transition-colors cursor-pointer text-left"
+                >
                   Simulador de Abstenção
-                </a>
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => onSelectTab?.('documento')} 
+                  className="hover:text-white transition-colors cursor-pointer text-left"
+                >
+                  Programa Oficial (PDF)
+                </button>
               </li>
             </ul>
           </div>

@@ -27,6 +27,7 @@ const CATEGORY_MAP: Record<string, string> = {
 export function ProgramProposalsSection({ onSelectProposal }: ProgramProposalsSectionProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [showAll, setShowAll] = useState<boolean>(false);
 
   const filteredProposals = useMemo(() => {
     return PROGRAM_AXES.filter((p) => {
@@ -42,6 +43,13 @@ export function ProgramProposalsSection({ onSelectProposal }: ProgramProposalsSe
       return matchesCategory && matchesSearch;
     });
   }, [selectedCategory, searchQuery]);
+
+  const displayedProposals = useMemo(() => {
+    if (selectedCategory !== 'all' || searchQuery.trim() !== '') {
+      return filteredProposals;
+    }
+    return showAll ? filteredProposals : filteredProposals.slice(0, 6);
+  }, [filteredProposals, selectedCategory, searchQuery, showAll]);
 
   // Icon mapping
   const renderIcon = (name: string) => {
@@ -126,8 +134,8 @@ export function ProgramProposalsSection({ onSelectProposal }: ProgramProposalsSe
         </div>
 
         {/* Proposals Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {filteredProposals.map((item) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
+          {displayedProposals.map((item) => (
             <article
               key={item.id}
               className="flex flex-col justify-between bg-neutral-50/70 hover:bg-neutral-50 border border-neutral-200/90 hover:border-neutral-300 rounded-xl p-5 sm:p-6 transition-all group"
@@ -188,6 +196,19 @@ export function ProgramProposalsSection({ onSelectProposal }: ProgramProposalsSe
             </article>
           ))}
         </div>
+
+        {/* Expand / Collapse Toggle if in 'all' view */}
+        {selectedCategory === 'all' && !searchQuery && filteredProposals.length > 6 && (
+          <div className="text-center py-4">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs font-bold rounded-xl transition-colors cursor-pointer shadow-2xs"
+            >
+              <span>{showAll ? 'Exibir Apenas as 6 Principais' : 'Mostrar Todas as 13 Diretrizes Programáticas'}</span>
+              <ArrowRight className={`w-4 h-4 transition-transform ${showAll ? '-rotate-90' : 'rotate-90'}`} />
+            </button>
+          </div>
+        )}
 
         {filteredProposals.length === 0 && (
           <div className="text-center py-16 bg-neutral-50 rounded-xl border border-neutral-200 p-8">

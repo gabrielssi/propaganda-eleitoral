@@ -17,66 +17,124 @@ export function VotingAbstentionSection() {
   const votesToWin = Math.floor(activeVotes / 2) + 1;
   const percentOfTotalElectorateNeeded = ((votesToWin / totalElectorate) * 100).toFixed(1);
 
+  const [activeSubTab, setActiveSubTab] = useState<'motivos' | 'simulador' | 'guia' | 'tudo'>('motivos');
+
   return (
-    <section id="voto-abstencao" className="py-16 sm:py-24 bg-white border-b border-neutral-200">
+    <section id="voto-abstencao" className="py-12 sm:py-20 bg-white border-b border-neutral-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
+        {/* Sub-tab Navigation Switcher */}
+        <div className="mb-10 pb-4 border-b border-neutral-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto scrollbar-none max-w-full pb-1 sm:pb-0">
+            <button
+              onClick={() => setActiveSubTab('motivos')}
+              className={`px-3.5 py-2 text-xs font-bold rounded-lg transition-all shrink-0 cursor-pointer min-h-[38px] ${
+                activeSubTab === 'motivos'
+                  ? 'bg-neutral-900 text-white shadow-xs'
+                  : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-700'
+              }`}
+            >
+              1. Por Que Votar no Lula (6 Motivos)
+            </button>
+
+            <button
+              onClick={() => setActiveSubTab('simulador')}
+              className={`px-3.5 py-2 text-xs font-bold rounded-lg transition-all shrink-0 cursor-pointer min-h-[38px] ${
+                activeSubTab === 'simulador'
+                  ? 'bg-neutral-900 text-white shadow-xs'
+                  : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-700'
+              }`}
+            >
+              2. Simulador de Abstenção
+            </button>
+
+            <button
+              onClick={() => setActiveSubTab('guia')}
+              className={`px-3.5 py-2 text-xs font-bold rounded-lg transition-all shrink-0 cursor-pointer min-h-[38px] ${
+                activeSubTab === 'guia'
+                  ? 'bg-neutral-900 text-white shadow-xs'
+                  : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-700'
+              }`}
+            >
+              3. Guia do Eleitor
+            </button>
+
+            <button
+              onClick={() => setActiveSubTab('tudo')}
+              className={`px-3 py-2 text-xs font-medium rounded-lg transition-all shrink-0 cursor-pointer min-h-[38px] ${
+                activeSubTab === 'tudo'
+                  ? 'bg-neutral-900 text-white shadow-xs'
+                  : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-600'
+              }`}
+            >
+              Ver Tudo
+            </button>
+          </div>
+
+          <span className="text-[11px] font-semibold text-neutral-500 uppercase tracking-wider hidden sm:inline">
+            Voto, Democracia & Cidadania
+          </span>
+        </div>
+        
         {/* Sub-section 1: Por Que Votar no Governo Lula */}
-        <div id="por-que-lula" className="mb-20">
-          <div className="max-w-3xl mb-12">
-            <div className="flex items-center gap-2 text-xs font-bold tracking-wider text-red-600 uppercase mb-3">
-              <span>Compromisso e Resultados</span>
-              <span aria-hidden="true">·</span>
-              <span>Eleições 2026</span>
+        {(activeSubTab === 'motivos' || activeSubTab === 'tudo') && (
+          <div id="por-que-lula" className="mb-14">
+            <div className="max-w-3xl mb-8">
+              <div className="flex items-center gap-2 text-xs font-bold tracking-wider text-red-600 uppercase mb-2">
+                <span>Compromisso e Resultados</span>
+                <span aria-hidden="true">·</span>
+                <span>Eleições 2026</span>
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-neutral-900 tracking-tight leading-tight mb-3">
+                Por Que Votar no Governo Lula em 2026?
+              </h2>
+
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                O voto em Lula representa a escolha consciente pela continuidade do desenvolvimento com inclusão, ampliação de direitos históricos e soberania brasileira. Não são promessas no vazio: são entregas comprovadas no bolso, na mesa e na vida do trabalhador.
+              </p>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-neutral-900 tracking-tight leading-tight mb-4">
-              Por Que Votar no Governo Lula em 2026?
-            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {WHY_VOTE_LULA.map((reason) => (
+                <div
+                  key={reason.id}
+                  className="bg-neutral-50 border border-neutral-200 rounded-xl p-5 flex flex-col justify-between hover:border-red-300 hover:bg-red-50/20 transition-all group"
+                >
+                  <div>
+                    <div className="flex items-baseline justify-between mb-3">
+                      <span className="text-2xl font-black text-neutral-900 tracking-tight tabular-nums group-hover:text-red-700 transition-colors">
+                        {reason.metric}
+                      </span>
+                      <span className="text-[11px] font-semibold text-neutral-500 uppercase tracking-wider">
+                        {reason.metricLabel}
+                      </span>
+                    </div>
 
-            <p className="text-base sm:text-lg text-neutral-600 leading-relaxed">
-              O voto em Lula representa a escolha consciente pela continuidade do desenvolvimento com inclusão, ampliação de direitos históricos e soberania brasileira. Não são promessas no vazio: são entregas comprovadas no bolso, na mesa e na vida do trabalhador.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {WHY_VOTE_LULA.map((reason) => (
-              <div
-                key={reason.id}
-                className="bg-neutral-50 border border-neutral-200 rounded-xl p-6 flex flex-col justify-between hover:border-red-300 hover:bg-red-50/20 transition-all group"
-              >
-                <div>
-                  <div className="flex items-baseline justify-between mb-3">
-                    <span className="text-2xl font-black text-neutral-900 tracking-tight tabular-nums group-hover:text-red-700 transition-colors">
-                      {reason.metric}
-                    </span>
-                    <span className="text-[11px] font-semibold text-neutral-500 uppercase tracking-wider">
-                      {reason.metricLabel}
-                    </span>
+                    <h3 className="text-base font-bold text-neutral-900 leading-snug mb-1">
+                      {reason.title}
+                    </h3>
+                    <p className="text-xs font-semibold text-red-600 mb-2">
+                      {reason.subtitle}
+                    </p>
+                    <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                      {reason.description}
+                    </p>
                   </div>
 
-                  <h3 className="text-lg font-bold text-neutral-900 leading-snug mb-1">
-                    {reason.title}
-                  </h3>
-                  <p className="text-xs font-semibold text-red-600 mb-3">
-                    {reason.subtitle}
-                  </p>
-                  <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-                    {reason.description}
-                  </p>
+                  <div className="pt-3 mt-4 border-t border-neutral-200/60 flex items-center gap-1.5 text-xs font-bold text-neutral-900">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>Meta assegurada no Programa Oficial</span>
+                  </div>
                 </div>
-
-                <div className="pt-4 mt-4 border-t border-neutral-200/60 flex items-center gap-1.5 text-xs font-bold text-neutral-900">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                  <span>Meta assegurada no Programa Oficial</span>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Sub-section 2: A Importância do Voto & O Impacto das Abstenções */}
-        <div className="bg-neutral-900 text-white rounded-3xl p-6 sm:p-10 lg:p-12 mb-16 border border-neutral-800 shadow-xl">
+        {(activeSubTab === 'simulador' || activeSubTab === 'tudo') && (
+          <div className="bg-neutral-900 text-white rounded-3xl p-6 sm:p-10 mb-14 border border-neutral-800 shadow-xl">
           <div className="max-w-3xl mb-8">
             <div className="flex items-center gap-2 text-xs font-bold tracking-wider text-amber-400 uppercase mb-3">
               <Vote className="w-4 h-4 text-amber-400" />
@@ -200,54 +258,56 @@ export function VotingAbstentionSection() {
               </div>
             ))}
           </div>
-
         </div>
+      )}
 
         {/* Sub-section 3: Guia Prático do Eleitor */}
-        <div>
-          <div className="max-w-2xl mb-8">
-            <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider block mb-1">
-              Cidadania Ativa
-            </span>
-            <h3 className="text-2xl font-bold text-neutral-900">
-              Guia Prático do Eleitor: Vote com Segurança e Certeza
-            </h3>
-            <p className="text-xs sm:text-sm text-neutral-600 mt-1">
-              Tudo o que você precisa saber para exercer o seu direito democrático com tranquilidade no dia da eleição.
-            </p>
-          </div>
+        {(activeSubTab === 'guia' || activeSubTab === 'tudo') && (
+          <div>
+            <div className="max-w-2xl mb-8">
+              <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider block mb-1">
+                Cidadania Ativa
+              </span>
+              <h3 className="text-2xl font-bold text-neutral-900">
+                Guia Prático do Eleitor: Vote com Segurança e Certeza
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-600 mt-1">
+                Tudo o que você precisa saber para exercer o seu direito democrático com tranquilidade no dia da eleição.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {VOTER_GUIDE_STEPS.map((step) => (
-              <div
-                key={step.step}
-                className="bg-neutral-50 border border-neutral-200 rounded-xl p-5 flex flex-col justify-between"
-              >
-                <div>
-                  <span className="font-mono text-2xl font-black text-red-600 block mb-2">
-                    {step.step}
-                  </span>
-                  <h4 className="text-base font-bold text-neutral-900 mb-2 leading-snug">
-                    {step.title}
-                  </h4>
-                  <p className="text-xs text-neutral-600 leading-relaxed mb-4">
-                    {step.desc}
-                  </p>
-                </div>
-
-                <a
-                  href={step.actionLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-red-600 hover:text-red-800 transition-colors pt-2 border-t border-neutral-200"
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {VOTER_GUIDE_STEPS.map((step) => (
+                <div
+                  key={step.step}
+                  className="bg-neutral-50 border border-neutral-200 rounded-xl p-5 flex flex-col justify-between"
                 >
-                  <span>{step.actionText}</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            ))}
+                  <div>
+                    <span className="font-mono text-2xl font-black text-red-600 block mb-2">
+                      {step.step}
+                    </span>
+                    <h4 className="text-base font-bold text-neutral-900 mb-2 leading-snug">
+                      {step.title}
+                    </h4>
+                    <p className="text-xs text-neutral-600 leading-relaxed mb-4">
+                      {step.desc}
+                    </p>
+                  </div>
+
+                  <a
+                    href={step.actionLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-red-600 hover:text-red-800 transition-colors pt-2 border-t border-neutral-200"
+                  >
+                    <span>{step.actionText}</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
       </div>
     </section>
