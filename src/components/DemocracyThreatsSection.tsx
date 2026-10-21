@@ -37,26 +37,26 @@ export function DemocracyThreatsSection() {
         </div>
 
         {/* 4 Pillars Nav */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 mb-6 sm:mb-8">
           {DEMOCRACY_THREATS.map((threat) => {
             const isActive = activeDossier === threat.id;
             return (
               <button
                 key={threat.id}
                 onClick={() => setActiveDossier(threat.id)}
-                className={`p-4 rounded-xl text-left border transition-all cursor-pointer ${
+                className={`p-3 sm:p-4 rounded-xl text-left border transition-all cursor-pointer min-h-[64px] ${
                   isActive
                     ? 'bg-neutral-800 border-red-500 shadow-lg ring-1 ring-red-500/50'
                     : 'bg-neutral-950/60 border-neutral-800 hover:border-neutral-700 hover:bg-neutral-800/50 text-neutral-400'
                 }`}
               >
-                <div className="flex items-center justify-between mb-2">
-                  <span className={`text-[11px] font-bold uppercase tracking-wider ${isActive ? 'text-red-400' : 'text-neutral-500'}`}>
+                <div className="flex items-center justify-between mb-1 sm:mb-2">
+                  <span className={`text-[10px] sm:text-[11px] font-bold uppercase tracking-wider ${isActive ? 'text-red-400' : 'text-neutral-500'}`}>
                     Dossiê
                   </span>
                   {isActive && <span className="w-2 h-2 rounded-full bg-red-500"></span>}
                 </div>
-                <h3 className={`text-sm font-bold leading-snug ${isActive ? 'text-white' : 'text-neutral-300'}`}>
+                <h3 className={`text-xs sm:text-sm font-bold leading-snug ${isActive ? 'text-white' : 'text-neutral-300'}`}>
                   {threat.badge}
                 </h3>
               </button>
@@ -65,16 +65,16 @@ export function DemocracyThreatsSection() {
         </div>
 
         {/* Active Dossier Detailed Panel */}
-        <div className="bg-neutral-950 border border-neutral-800 rounded-2xl p-6 sm:p-10 shadow-2xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="bg-neutral-950 border border-neutral-800 rounded-2xl p-4 sm:p-8 lg:p-10 shadow-2xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
             
             {/* Left Content: Facts and Summary */}
-            <div className="lg:col-span-8 space-y-6">
+            <div className="lg:col-span-8 space-y-4 sm:space-y-6">
               <div>
-                <span className="text-xs font-mono font-bold text-red-400 uppercase tracking-widest block mb-2">
+                <span className="text-[11px] sm:text-xs font-mono font-bold text-red-400 uppercase tracking-widest block mb-1.5 sm:mb-2">
                   Evidências e Fatos Documentados
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-snug">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight leading-snug">
                   {currentRecord.title}
                 </h3>
               </div>

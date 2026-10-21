@@ -88,14 +88,14 @@ export function ProgramProposalsSection({ onSelectProposal }: ProgramProposalsSe
         <div className="flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center mb-8 pb-6 border-b border-neutral-200">
           
           {/* Interactive filter segmented buttons */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-2 md:pb-0 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
             {Object.entries(CATEGORY_MAP).slice(0, 7).map(([key, label]) => (
               <button
                 key={key}
                 onClick={() => setSelectedCategory(key)}
-                className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                className={`px-3.5 py-2 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap shrink-0 cursor-pointer min-h-[38px] flex items-center ${
                   selectedCategory === key
-                    ? 'bg-neutral-900 text-white shadow-xs'
+                    ? 'bg-neutral-900 text-white shadow-2xs'
                     : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                 }`}
               >
@@ -105,19 +105,19 @@ export function ProgramProposalsSection({ onSelectProposal }: ProgramProposalsSe
           </div>
 
           {/* Search Input */}
-          <div className="relative min-w-[260px] md:max-w-xs">
-            <Search className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" />
+          <div className="relative w-full md:max-w-xs">
+            <Search className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Buscar por proposta, programa..."
-              className="w-full pl-9 pr-4 py-2 text-xs sm:text-sm bg-neutral-50 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-white transition-all"
+              className="w-full pl-9 pr-4 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-white transition-all min-h-[42px]"
             />
             {searchQuery && (
               <button 
                 onClick={() => setSearchQuery("")}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-neutral-400 hover:text-neutral-700 px-1 cursor-pointer"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-neutral-400 hover:text-neutral-700 px-2 py-1 cursor-pointer"
               >
                 Limpar
               </button>
@@ -126,11 +126,11 @@ export function ProgramProposalsSection({ onSelectProposal }: ProgramProposalsSe
         </div>
 
         {/* Proposals Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {filteredProposals.map((item) => (
             <article
               key={item.id}
-              className="flex flex-col justify-between bg-neutral-50/70 hover:bg-neutral-50 border border-neutral-200/90 hover:border-neutral-300 rounded-xl p-6 transition-all group"
+              className="flex flex-col justify-between bg-neutral-50/70 hover:bg-neutral-50 border border-neutral-200/90 hover:border-neutral-300 rounded-xl p-5 sm:p-6 transition-all group"
             >
               <div>
                 {/* Clean Metadata Header */}

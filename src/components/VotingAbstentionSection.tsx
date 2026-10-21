@@ -93,21 +93,21 @@ export function VotingAbstentionSection() {
           </div>
 
           {/* Interactive Abstention Simulator */}
-          <div className="bg-neutral-950 p-6 sm:p-8 rounded-2xl border border-neutral-800 mb-10">
+          <div className="bg-neutral-950 p-4 sm:p-6 lg:p-8 rounded-2xl border border-neutral-800 mb-8 sm:mb-10">
             <div className="flex items-center gap-2 text-xs font-bold text-red-400 uppercase tracking-wider mb-4">
               <Calculator className="w-4 h-4" />
               <span>Simulador Interativo: Como a Abstenção Distorce o Resultado</span>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
               
               {/* Slider Control */}
-              <div className="lg:col-span-6 space-y-4">
+              <div className="lg:col-span-6 space-y-3.5 sm:space-y-4">
                 <div className="flex items-center justify-between">
-                  <label htmlFor="abstention-slider" className="text-sm font-semibold text-neutral-200">
-                    Taxa Hipotética de Abstenção Nacional:
+                  <label htmlFor="abstention-slider" className="text-xs sm:text-sm font-semibold text-neutral-200">
+                    Taxa Hipotética de Abstenção:
                   </label>
-                  <span className="text-lg font-mono font-bold text-amber-400 tabular-nums">
+                  <span className="text-base sm:text-lg font-mono font-bold text-amber-400 tabular-nums">
                     {simulatedAbstention.toFixed(1)}%
                   </span>
                 </div>
@@ -120,50 +120,50 @@ export function VotingAbstentionSection() {
                   step="0.5"
                   value={simulatedAbstention}
                   onChange={(e) => setSimulatedAbstention(parseFloat(e.target.value))}
-                  className="w-full h-2 bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-red-600"
+                  className="w-full h-3 sm:h-2 bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-red-600 touch-pan-x"
                 />
 
-                <div className="flex justify-between text-[11px] text-neutral-500 font-mono">
-                  <span>5% (Participação Maciça)</span>
-                  <span>20.6% (Média 2022)</span>
-                  <span>35% (Vácuo Político)</span>
+                <div className="flex justify-between text-[10px] sm:text-[11px] text-neutral-500 font-mono">
+                  <span>5% (Maciça)</span>
+                  <span>20.6% (2022)</span>
+                  <span>35% (Vácuo)</span>
                 </div>
 
-                <p className="text-xs text-neutral-400 leading-relaxed pt-2">
+                <p className="text-[11px] sm:text-xs text-neutral-400 leading-relaxed pt-1">
                   Arraste o controle acima para visualizar o impacto matemático: quanto maior a abstenção, menor é o número absoluto de votos que um candidato radical precisa obter para vencer e governar a nação.
                 </p>
               </div>
 
               {/* Live Simulator Calculation Results */}
-              <div className="lg:col-span-6 grid grid-cols-2 gap-3">
-                <div className="bg-neutral-900 p-4 rounded-xl border border-neutral-800">
-                  <span className="text-[11px] text-neutral-400 block mb-1">Eleitores que Não Votam</span>
-                  <span className="text-xl sm:text-2xl font-black font-mono text-red-400 tabular-nums">
+              <div className="lg:col-span-6 grid grid-cols-2 gap-2.5 sm:gap-3">
+                <div className="bg-neutral-900 p-3 sm:p-4 rounded-xl border border-neutral-800">
+                  <span className="text-[10px] sm:text-[11px] text-neutral-400 block mb-1">Eleitores Ausentes</span>
+                  <span className="text-lg sm:text-2xl font-black font-mono text-red-400 tabular-nums">
                     {(abstentionVotes / 1000000).toFixed(1)} Mi
                   </span>
-                  <span className="text-[10px] text-neutral-500 block mt-1">
-                    Vozes silenciadas nas urnas
+                  <span className="text-[9px] sm:text-[10px] text-neutral-500 block mt-0.5 sm:mt-1">
+                    Vozes que não opinam
                   </span>
                 </div>
 
-                <div className="bg-neutral-900 p-4 rounded-xl border border-neutral-800">
-                  <span className="text-[11px] text-neutral-400 block mb-1">Votos Válidos Efetivos</span>
-                  <span className="text-xl sm:text-2xl font-black font-mono text-emerald-400 tabular-nums">
+                <div className="bg-neutral-900 p-3 sm:p-4 rounded-xl border border-neutral-800">
+                  <span className="text-[10px] sm:text-[11px] text-neutral-400 block mb-1">Votos Válidos</span>
+                  <span className="text-lg sm:text-2xl font-black font-mono text-emerald-400 tabular-nums">
                     {(activeVotes / 1000000).toFixed(1)} Mi
                   </span>
-                  <span className="text-[10px] text-neutral-500 block mt-1">
-                    Cidadãos que decidem o país
+                  <span className="text-[9px] sm:text-[10px] text-neutral-500 block mt-0.5 sm:mt-1">
+                    Decidem o presidente
                   </span>
                 </div>
 
-                <div className="col-span-2 bg-neutral-900/90 p-4 rounded-xl border border-neutral-800 flex items-center justify-between">
+                <div className="col-span-2 bg-neutral-900/90 p-3.5 sm:p-4 rounded-xl border border-neutral-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                   <div>
                     <span className="text-xs text-neutral-300 font-medium">Votos necessários para ser eleito:</span>
-                    <p className="text-xs text-neutral-400 mt-0.5">
-                      Com essa abstenção, basta conquistar <strong>{percentOfTotalElectorateNeeded}%</strong> da população total para vencer.
+                    <p className="text-[11px] sm:text-xs text-neutral-400 mt-0.5">
+                      Basta conquistar <strong>{percentOfTotalElectorateNeeded}%</strong> da população total para vencer.
                     </p>
                   </div>
-                  <span className="text-xl font-black font-mono text-white tabular-nums shrink-0 ml-4">
+                  <span className="text-lg sm:text-xl font-black font-mono text-white tabular-nums shrink-0">
                     {(votesToWin / 1000000).toFixed(1)} Mi
                   </span>
                 </div>

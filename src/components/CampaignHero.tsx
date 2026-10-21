@@ -55,10 +55,10 @@ export function CampaignHero({ onOpenPdfModal }: CampaignHeroProps) {
             </p>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 mb-10">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-10">
               <a
                 href="#propostas"
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-red-600 hover:bg-red-700 text-white text-base font-bold rounded-lg shadow-sm hover:shadow transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 sm:py-3.5 bg-red-600 hover:bg-red-700 active:scale-[0.98] text-white text-base font-bold rounded-xl sm:rounded-lg shadow-sm hover:shadow transition-all min-h-[48px]"
               >
                 <span>Conhecer as 13 Diretrizes</span>
                 <ArrowRight className="w-5 h-5" />
@@ -66,7 +66,7 @@ export function CampaignHero({ onOpenPdfModal }: CampaignHeroProps) {
 
               <a
                 href="#democracia"
-                className="inline-flex items-center gap-2 px-5 py-3.5 text-neutral-800 hover:text-red-700 text-sm font-bold bg-neutral-100 hover:bg-neutral-200 rounded-lg transition-all"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-neutral-800 hover:text-red-700 text-sm font-bold bg-neutral-100 hover:bg-neutral-200 active:scale-[0.98] rounded-xl sm:rounded-lg transition-all min-h-[48px]"
               >
                 <ShieldAlert className="w-4 h-4 text-red-600" />
                 <span>Defesa da Democracia</span>
@@ -75,15 +75,15 @@ export function CampaignHero({ onOpenPdfModal }: CampaignHeroProps) {
 
             {/* Coalition Parties Bar */}
             <div className="pt-6 border-t border-neutral-200">
-              <p className="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-3">
+              <p className="text-[11px] sm:text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-3">
                 Coligação Democrática · Partidos Unidos pelo Brasil
               </p>
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                 {COALITION_PARTIES.map((party) => (
                   <span
                     key={party.name}
                     title={party.fullName}
-                    className={`px-3 py-1 text-xs font-black rounded tracking-wider shadow-2xs ${party.color}`}
+                    className={`px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-black rounded tracking-wider shadow-2xs ${party.color}`}
                   >
                     {party.name}
                   </span>
@@ -95,10 +95,10 @@ export function CampaignHero({ onOpenPdfModal }: CampaignHeroProps) {
 
           {/* Right Column: Hero Visual Asset from Document */}
           <div className="lg:col-span-5">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
+            <div className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-none">
               
               {/* Outer decorative border with Brazilian colors */}
-              <div className="relative rounded-2xl overflow-hidden border-4 border-white shadow-2xl bg-neutral-100">
+              <div className="relative rounded-2xl overflow-hidden border-2 sm:border-4 border-white shadow-xl sm:shadow-2xl bg-neutral-100">
                 <img
                   src={getAssetUrl('assets/extracted/capa_lula.jpg')}
                   alt="Presidente Lula - Campanha Oficial 2026 com o povo brasileiro"
@@ -108,24 +108,24 @@ export function CampaignHero({ onOpenPdfModal }: CampaignHeroProps) {
                 />
 
                 {/* Overlay Badge */}
-                <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-neutral-950/90 via-neutral-950/60 to-transparent text-white">
+                <div className="absolute bottom-0 inset-x-0 p-3 sm:p-4 bg-gradient-to-t from-neutral-950/90 via-neutral-950/60 to-transparent text-white">
                   <div>
-                    <p className="text-[11px] uppercase tracking-widest text-amber-400 font-bold">Documento Registrado no TSE</p>
-                    <p className="text-sm font-bold text-neutral-100">Programa de Governo Lula 2026</p>
+                    <p className="text-[10px] sm:text-[11px] uppercase tracking-widest text-amber-400 font-bold">Documento Registrado no TSE</p>
+                    <p className="text-xs sm:text-sm font-bold text-neutral-100">Programa de Governo Lula 2026</p>
                   </div>
                 </div>
               </div>
 
               {/* Floating Key Commitment Card */}
-              <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl border border-neutral-200 shadow-xl max-w-xs hidden sm:block">
+              <div className="mt-4 sm:mt-0 sm:absolute sm:-bottom-6 sm:-left-6 bg-white p-3.5 sm:p-4 rounded-xl border border-neutral-200 shadow-md sm:shadow-xl max-w-sm">
                 <div className="flex items-start gap-3">
                   <div className="p-2 bg-emerald-100 text-emerald-700 rounded-lg shrink-0">
                     <CheckCircle2 className="w-5 h-5" />
                   </div>
                   <div>
                     <p className="text-xs font-bold text-neutral-900">Fora do Mapa da Fome</p>
-                    <p className="text-[11px] text-neutral-600 mt-0.5">
-                      Compromisso cumprido em 2024–2026 e ampliação do Bolsa Família e valorização do salário mínimo.
+                    <p className="text-[11px] text-neutral-600 mt-0.5 leading-snug">
+                      Compromisso cumprido em 2024–2026 e ampliação contínua do Bolsa Família e valorização do salário mínimo.
                     </p>
                   </div>
                 </div>
@@ -136,23 +136,23 @@ export function CampaignHero({ onOpenPdfModal }: CampaignHeroProps) {
 
         </div>
 
-        {/* 4-Column Quick Achievement Strip */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 p-6 bg-neutral-100/80 rounded-2xl border border-neutral-200/80">
-          <div className="px-3 py-2">
-            <span className="block text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight">8 Milhões</span>
-            <span className="text-xs sm:text-sm font-medium text-neutral-600">Novos empregos com carteira assinada</span>
+        {/* 4-Column Quick Achievement Strip (Mobile & Tablet Optimized) */}
+        <div className="mt-12 sm:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 p-4 sm:p-6 bg-neutral-100/90 rounded-2xl border border-neutral-200">
+          <div className="p-2 sm:px-3 sm:py-2">
+            <span className="block text-xl sm:text-2xl lg:text-3xl font-black text-neutral-900 tracking-tight tabular-nums">8 Milhões</span>
+            <span className="text-[11px] sm:text-xs font-medium text-neutral-600">Novos empregos formais</span>
           </div>
-          <div className="px-3 py-2 border-l border-neutral-300/80">
-            <span className="block text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight">R$ 5.000</span>
-            <span className="text-xs sm:text-sm font-medium text-neutral-600">Isenção total de Imposto de Renda</span>
+          <div className="p-2 sm:px-3 sm:py-2 border-l border-neutral-300">
+            <span className="block text-xl sm:text-2xl lg:text-3xl font-black text-neutral-900 tracking-tight tabular-nums">R$ 5.000</span>
+            <span className="text-[11px] sm:text-xs font-medium text-neutral-600">Isenção total de IR</span>
           </div>
-          <div className="px-3 py-2 border-l border-neutral-300/80">
-            <span className="block text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight">7,3 Milhões</span>
-            <span className="text-xs sm:text-sm font-medium text-neutral-600">Jovens com bolsa poupança Pé-de-Meia</span>
+          <div className="p-2 sm:px-3 sm:py-2 border-t sm:border-t-0 sm:border-l border-neutral-300">
+            <span className="block text-xl sm:text-2xl lg:text-3xl font-black text-neutral-900 tracking-tight tabular-nums">7,3 Milhões</span>
+            <span className="text-[11px] sm:text-xs font-medium text-neutral-600">Jovens no Pé-de-Meia</span>
           </div>
-          <div className="px-3 py-2 border-l border-neutral-300/80">
-            <span className="block text-2xl sm:text-3xl font-black text-neutral-900 tracking-tight">3 Milhões</span>
-            <span className="text-xs sm:text-sm font-medium text-neutral-600">Casas no Minha Casa Minha Vida</span>
+          <div className="p-2 sm:px-3 sm:py-2 border-t sm:border-t-0 border-l border-neutral-300">
+            <span className="block text-xl sm:text-2xl lg:text-3xl font-black text-neutral-900 tracking-tight tabular-nums">3 Milhões</span>
+            <span className="text-[11px] sm:text-xs font-medium text-neutral-600">Moradias no MCMV</span>
           </div>
         </div>
 
